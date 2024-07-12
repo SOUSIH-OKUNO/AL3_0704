@@ -9,6 +9,7 @@ GameScene::GameScene() {}
 GameScene::~GameScene() {
 
 	delete modelBlock_;
+	delete modelSkydome_;
 
 	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
@@ -28,7 +29,7 @@ GameScene::~GameScene() {
 
 		//カメラの生成
 		debugCamera_ = new DebugCamera(WinApp::kWindowWidth, WinApp::kWindowHeight);
-		cameraMarix_ = MatrixMath::MakeAffineMatrix(
+		cameraMatrix_ = MatrixMath::MakeAffineMatrix(
 			{ 0.0f,0.0f,0.0f },
 			debugCamera_->GetViewProjection().rotation_,
 			debugCamera_->GetViewProjection().translation_
@@ -38,19 +39,19 @@ GameScene::~GameScene() {
 		AxisIndicator::GetInstance()->SetTargetViewProjection(&debugCamera_->GetViewProjection());
 
 		//要素数
-		const uint32_t kNumblockVirtical = 10;
+		const uint32_t kNumBlockVertical = 10;
 		const uint32_t kNumBlockHorizonal = 20;
 		//ブロック1個分の横幅
 		const float kBlockWidth = 2.0f;
 		const float kBlockHeight = 2.0f;
 		//要素数を変更する
-		worldTransformBlocks_.resize(kNumblockVirtical);
-		for (uint32_t i = 0; i < kNumblockVirtical; i++) {
+		worldTransformBlocks_.resize(kNumBlockVertical);
+		for (uint32_t i = 0; i < kNumBlockVertical; i++) {
 			worldTransformBlocks_[i].resize(kNumBlockHorizonal);
 		}
 
 		//	ブロックの生成
-		for (uint32_t row = 0; row < kNumblockVirtical; row++) {
+		for (uint32_t row = 0; row < kNumBlockVertical; row++) {
 			for (uint32_t column = 0; column < kNumBlockHorizonal; column++) {
 				
 					worldTransformBlocks_[row][column] = new WorldTransform();
@@ -64,6 +65,10 @@ GameScene::~GameScene() {
 
 		viewProjection_.Initialize();
 		modelBlock_ = Model::Create();
+	    modelSkydome_ = Model::CreateFromOBJ("sphere", true);
+	    skydome_ = new Skydome();
+	    skydome_->Initialize(modelSkydome_, &viewProjection_);
+   
 	}
 
 	void GameScene::Update() {
@@ -97,7 +102,7 @@ GameScene::~GameScene() {
 			viewProjection_.UpdateMatrix();
 		}
 		
-
+		skydome_->Update();
 		
 	}
 
@@ -133,6 +138,8 @@ GameScene::~GameScene() {
 				modelBlock_->Draw(*worldTransformBlock, viewProjection_);
 			}
 		}
+
+		skydome_->Draw();
 
 		// 3Dオブジェクト描画後処理
 		Model::PostDraw();

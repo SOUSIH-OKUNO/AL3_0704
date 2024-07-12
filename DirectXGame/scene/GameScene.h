@@ -8,6 +8,7 @@
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 #include "DebugCamera.h"
+#include "Skydome.h"
 
 
 #include <vector>
@@ -59,7 +60,8 @@ private: // メンバ変数
 	Sprite sprite_;
 	bool isDebugCameraActive_ = false;
 	DebugCamera* debugCamera_ = nullptr;
-	Matrix4x4 cameraMarix_;
+	Matrix4x4 cameraMatrix_;
 	Model* modelBlock_ = nullptr;
+	Skydome* skydome_ = nullptr;
 	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
 };
