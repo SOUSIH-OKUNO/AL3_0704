@@ -31,7 +31,7 @@ void GameScene::Initialize() {
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
-	textureHandle_ = TextureManager::Load("player.jpg");
+	textureHandle_ = TextureManager::Load("uvChecker.png");
 
 	// 3Dモデル
 	model_ = Model::Create();
@@ -65,6 +65,7 @@ void GameScene::Update() {
 
 #ifdef _DEBUG
 	if (input_->TriggerKey(DIK_SPACE)) {
+
 		if (isDebugCameraActive_ == true)
 			isDebugCameraActive_ = false;
 		else
