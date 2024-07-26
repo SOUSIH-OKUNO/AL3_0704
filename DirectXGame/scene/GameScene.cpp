@@ -31,7 +31,7 @@ void GameScene::Initialize() {
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
-	textureHandle_ = TextureManager::Load("uvChecker.png");
+	// textureHandle_ = TextureManager::Load("rinku.jpg");
 
 	// 3Dモデル
 	model_ = Model::Create();
@@ -40,8 +40,6 @@ void GameScene::Initialize() {
 	viewProjection_.Initialize();
 	// 自キャラの生成
 	player_ = new Player();
-	// 自キャラの初期化
-	player_->Initialize(model_, textureHandle_, &viewProjection_);
 
 	// デバッグカメラの生成
 	debugCamera_ = new DebugCamera(1280, 720);
@@ -56,6 +54,10 @@ void GameScene::Initialize() {
 	mapChipField_ = new MapChipField;
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
 
+	// 自キャラの初期化
+	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(3, 18);
+	player_->Initialize(&viewProjection_, playerPosition);
+
 	GenerateBlocks();
 }
 
@@ -65,7 +67,6 @@ void GameScene::Update() {
 
 #ifdef _DEBUG
 	if (input_->TriggerKey(DIK_SPACE)) {
-
 		if (isDebugCameraActive_ == true)
 			isDebugCameraActive_ = false;
 		else

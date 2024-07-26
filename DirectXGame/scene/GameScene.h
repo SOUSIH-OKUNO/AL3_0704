@@ -7,11 +7,11 @@
 #include "MapChipField.h"
 #include "Model.h"
 #include "Player.h"
+#include "SafeDelete.h"
 #include "Skydome.h"
 #include "Sprite.h"
 #include "ViewProjection.h"
 #include "WorldTransform.h"
-#include "SafeDelete.h"
 
 #include <vector>
 
@@ -76,7 +76,7 @@ private: // メンバ変数
 	Model* modelSkydome_ = nullptr;
 
 	// マップチップフィールド
-	MapChipField* mapChipField_;
+	MapChipField* mapChipField_ = nullptr;
 
 	/// <summary>
 	/// ゲームシーン用
