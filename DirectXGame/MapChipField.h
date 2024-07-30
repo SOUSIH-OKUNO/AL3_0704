@@ -2,7 +2,7 @@
 #include "Vector3.h"
 #include <stdint.h>
 #include <vector>
-#include<string.h>
+#include <string>
 
 // 伝統的な列挙と比べてenum classには次の利点があります。
 // enum classの列挙値は暗黙的に整数型に変換されず、

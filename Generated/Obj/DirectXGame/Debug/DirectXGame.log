@@ -1,10 +1,5 @@
 ﻿  main.cpp
   MapChipField.cpp
-C:\Users\k023g\OneDrive\デスクトップ\AL3_0704\DirectXGame\MapChipField.h(27,33): error C2039: 'string': 'std' のメンバーではありません (ソース ファイルをコンパイルしています MapChipField.cpp)
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\vector(26,1): message : 'std' の宣言を確認してください (ソース ファイルをコンパイルしています MapChipField.cpp)
-C:\Users\k023g\OneDrive\デスクトップ\AL3_0704\DirectXGame\MapChipField.h(27,39): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません (ソース ファイルをコンパイルしています MapChipField.cpp)
-C:\Users\k023g\OneDrive\デスクトップ\AL3_0704\DirectXGame\MapChipField.h(27,39): error C2143: 構文エラー: ',' が '&' の前にありません。 (ソース ファイルをコンパイルしています MapChipField.cpp)
-C:\Users\k023g\OneDrive\デスクトップ\AL3_0704\DirectXGame\MapChipField.cpp(31,20): error C2511: 'void MapChipField::LoadMapChipCsv(const std::string &)': オーバーロードされたメンバー関数が 'MapChipField' にありません。
-C:\Users\k023g\OneDrive\デスクトップ\AL3_0704\DirectXGame\MapChipField.h(24,7): message : 'MapChipField' の宣言を確認してください
-C:\Users\k023g\OneDrive\デスクトップ\AL3_0704\DirectXGame\MapChipField.cpp(34,2): error C2352: 'MapChipField::ResetMapChipData': 非静的メンバー関数の呼び出しにはオブジェクトが必要です
-C:\Users\k023g\OneDrive\デスクトップ\AL3_0704\DirectXGame\MapChipField.cpp(19,20): message : 'MapChipField::ResetMapChipData' の宣言を確認してください
+  GameScene.cpp
+  LINK : 前回のインクリメンタル リンクで C:\Users\k023g\OneDrive\デスクトップ\AL3_0704\DirectXGame\..\Generated\Outputs\Debug\DirectXGame.exe が見つからなかったか、ビルドされませんでした。フル リンクを行います。
+  DirectXGame.vcxproj -> C:\Users\k023g\OneDrive\デスクトップ\AL3_0704\Generated\Outputs\Debug\DirectXGame.exe
