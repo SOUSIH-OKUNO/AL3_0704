@@ -1,7 +1,9 @@
 #include "GameScene.h"
 #include "CameraController.h"
+#include "MathUtilityForText.h"
 #include "TextureManager.h"
 #include <cassert>
+#include <cstdint>
 
 GameScene::GameScene() {}
 
@@ -13,6 +15,7 @@ GameScene::~GameScene() {
 	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
 			delete worldTransformBlock;
+			worldTransformBlock = nullptr;
 		}
 	}
 	worldTransformBlocks_.clear();
@@ -34,11 +37,11 @@ void GameScene::Initialize() {
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
-	// textureHandle_ = TextureManager::Load("rinku.jpg");
+	// textureHandle_ = TextureManager::Load("block.jpg");
 
 	// 3Dモデル
 	model_ = Model::Create();
-	modelBlock_ = Model::Create();
+	modelBlock_ = Model::CreateFromOBJ("block");
 	worldTransform_.Initialize();
 	viewProjection_.Initialize();
 	// 自キャラの生成
@@ -60,6 +63,7 @@ void GameScene::Initialize() {
 	// 自キャラの初期化
 	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(3, 18);
 	player_->Initialize(&viewProjection_, playerPosition);
+	player_->SetMapChipField(mapChipField_);
 
 	GenerateBlocks();
 
@@ -193,9 +197,9 @@ void GameScene::GenerateBlocks() {
 	}
 
 	// ブロックの生成
-	for (uint32_t i = 0; i < numBlockVirtical; ++i) {
-		worldTransformBlocks_[i].resize(numBlockHorizontal);
-	}
+//	for (uint32_t i = 0; i < numBlockVirtical; ++i) {
+//		worldTransformBlocks_[i].resize(numBlockHorizontal);
+//	}
 
 	for (uint32_t i = 0; i < numBlockVirtical; ++i) {
 		for (uint32_t j = 0; j < numBlockHorizontal; ++j) {
