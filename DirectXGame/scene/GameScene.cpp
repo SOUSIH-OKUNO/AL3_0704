@@ -1,4 +1,5 @@
 #include "GameScene.h"
+#include "CameraController.h"
 #include "TextureManager.h"
 #include <cassert>
 
@@ -23,6 +24,8 @@ GameScene::~GameScene() {
 	delete modelSkydome_;
 
 	delete mapChipField_;
+
+	delete cameraController;
 }
 
 void GameScene::Initialize() {
@@ -59,11 +62,21 @@ void GameScene::Initialize() {
 	player_->Initialize(&viewProjection_, playerPosition);
 
 	GenerateBlocks();
+
+	cameraController = new CameraController;
+	cameraController->Initialize();
+	cameraController->SetTarget(player_);
+	cameraController->Reset();
+
+	CameraController::Rect cameraArea = {12.0f, 100 - 12.0f, 6.0f, 6.0f};
+	cameraController->SetMovableArea(cameraArea);
 }
 
 void GameScene::Update() {
 
 	player_->Update();
+
+	cameraController->Update();
 
 #ifdef _DEBUG
 	if (input_->TriggerKey(DIK_SPACE)) {
@@ -84,7 +97,9 @@ void GameScene::Update() {
 		viewProjection_.TransferMatrix();
 	} else {
 		// ビュープロジェクション行列の更新と転送
-		viewProjection_.UpdateMatrix();
+		viewProjection_.matView = cameraController->GetViewProjection().matView;
+		viewProjection_.matProjection = cameraController->GetViewProjection().matProjection;
+		viewProjection_.TransferMatrix();
 	}
 
 	// 縦横ブロック更新
@@ -165,7 +180,7 @@ void GameScene::Draw() {
 void GameScene::GenerateBlocks() {
 
 	// 要素数
-	uint32_t numBlockVirtical = mapChipField_->GetNumBlockVertical();
+	uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtical();
 	uint32_t numBlockHorizontal = mapChipField_->GetNumBlockHorizontal();
 
 	// 要素数を変更する

@@ -1,5 +1,4 @@
 ﻿#define NOMINMAX
-
 #include "Player.h"
 #include "DirectXCommon.h"
 #include "Easing.h"

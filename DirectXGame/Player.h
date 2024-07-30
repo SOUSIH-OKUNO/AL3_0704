@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-
 #include "MathUtilityForText.h"
 #include "Model.h"
 #include "ViewProjection.h"
@@ -20,6 +19,10 @@ public:
 	void Update();
 
 	void Draw();
+
+	// getter
+	const WorldTransform& GetWorldTransform() const { return worldTransform_; }
+	const Vector3& GetVelocity() const { return velocity_; }
 
 private:
 	static inline const float kAcceleration = 0.01f;
