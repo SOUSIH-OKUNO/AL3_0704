@@ -4,6 +4,7 @@
 #include "CameraController.h"
 #include "DebugCamera.h"
 #include "DirectXCommon.h"
+#include "Enemy.h"
 #include "Input.h"
 #include "MapChipField.h"
 #include "Model.h"
@@ -58,6 +59,7 @@ private: // メンバ変数
 	// 3Dモデル
 	Model* model_ = nullptr;
 	Model* modelBlock_ = nullptr;
+	Model* modelEnemy_ = nullptr;
 	WorldTransform worldTransform_;
 	ViewProjection viewProjection_;
 
@@ -80,6 +82,8 @@ private: // メンバ変数
 	MapChipField* mapChipField_ = nullptr;
 
 	CameraController* cameraController = nullptr;
+
+	Enemy* enemy_ = nullptr;
 
 	/// <summary>
 	/// ゲームシーン用
