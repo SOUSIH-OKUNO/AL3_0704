@@ -9,6 +9,8 @@ GameScene::GameScene() {}
 
 GameScene::~GameScene() {
 
+	delete deathParticles_;
+
 	for (Enemy* enemy : enemies_) {
 		delete enemy;
 	}
@@ -31,6 +33,7 @@ GameScene::~GameScene() {
 	delete cameraController;
 	delete modelBlock_;
 	delete modelEnemy_;
+	delete modelDeathParticle_;
 }
 
 void GameScene::Initialize() {
@@ -45,6 +48,7 @@ void GameScene::Initialize() {
 	model_ = Model::Create();
 	modelBlock_ = Model::CreateFromOBJ("block");
 	modelEnemy_ = Model::CreateFromOBJ("enemy");
+	modelDeathParticle_ = Model::CreateFromOBJ("deathParticle", true);
 	worldTransform_.Initialize();
 	viewProjection_.Initialize();
 	// 自キャラの生成
@@ -67,6 +71,9 @@ void GameScene::Initialize() {
 	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(3, 18);
 	player_->Initialize(&viewProjection_, playerPosition);
 	player_->SetMapChipField(mapChipField_);
+
+	deathParticles_ = new DeathParticles;
+	deathParticles_->Initialize(modelDeathParticle_, &viewProjection_, playerPosition);
 
 	GenerateBlocks();
 
@@ -91,6 +98,10 @@ void GameScene::Update() {
 
 	for (Enemy* enemy : enemies_) {
 		enemy->Update();
+	}
+
+	if (deathParticles_) {
+		deathParticles_->Update();
 	}
 
 	cameraController->Update();
@@ -167,6 +178,10 @@ void GameScene::Draw() {
 
 	for (Enemy* enemy : enemies_) {
 		enemy->Draw();
+	}
+
+	if (deathParticles_) {
+		deathParticles_->Draw();
 	}
 
 	// 縦横ブロック描画

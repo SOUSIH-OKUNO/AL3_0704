@@ -5,7 +5,7 @@
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 
-class Player;
+    class Player;
 
 class Enemy {
 

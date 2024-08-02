@@ -2,6 +2,7 @@
 
 #include "Audio.h"
 #include "CameraController.h"
+#include "DeathParticles.h"
 #include "DebugCamera.h"
 #include "DirectXCommon.h"
 #include "Enemy.h"
@@ -60,6 +61,7 @@ private: // メンバ変数
 	Model* model_ = nullptr;
 	Model* modelBlock_ = nullptr;
 	Model* modelEnemy_ = nullptr;
+	Model* modelDeathParticle_ = nullptr;
 	WorldTransform worldTransform_;
 	ViewProjection viewProjection_;
 
@@ -86,6 +88,8 @@ private: // メンバ変数
 	Enemy* enemy_ = nullptr;
 
 	std::list<Enemy*> enemies_;
+
+	DeathParticles* deathParticles_ = nullptr;
 
 	void CheckAllCollisions();
 
