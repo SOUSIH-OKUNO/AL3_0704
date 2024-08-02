@@ -39,7 +39,7 @@ public:
 	const Vector3& GetVelocity() const { return velocity_; }
 
 private:
-	static inline const float kAcceleration = 0.2f;
+	static inline const float kAcceleration = 0.1f;
 	static inline const float kAttenuation = 0.05f;
 	static inline const float kLimitRunSpeed = 0.5f;
 	// 重力加速度(下方向)

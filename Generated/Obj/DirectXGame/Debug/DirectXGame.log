@@ -1,2 +1,5 @@
-﻿  GameScene.cpp
+﻿  CameraController.cpp
+  Player.cpp
+  main.cpp
+  GameScene.cpp
   DirectXGame.vcxproj -> C:\Users\k023g\OneDrive\デスクトップ\AL3_0704\Generated\Outputs\Debug\DirectXGame.exe
