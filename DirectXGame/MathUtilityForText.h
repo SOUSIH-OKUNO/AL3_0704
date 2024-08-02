@@ -1,4 +1,5 @@
 ﻿#pragma once
+#include "AABB.h"
 #include "Matrix4x4.h"
 #include "Vector3.h"
 
@@ -53,3 +54,5 @@ float EaseOut(float x1, float x2, float t);
 float EaseInOut(float x1, float x2, float t);
 
 Vector3 Lerp(const Vector3& v1, const Vector3& v2, float t);
+
+bool IsCollision(const AABB& aabb1, const AABB& aabb2);
