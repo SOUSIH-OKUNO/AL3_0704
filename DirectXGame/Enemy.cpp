@@ -1,11 +1,9 @@
-﻿
-#include  "Enemy.h"
+﻿#include  "Enemy.h"
 #include "MathUtilityForText.h"
 #include <cassert>
 #include <numbers>
 
-    void
-    Enemy::Initialize(Model* model, ViewProjection* viewProjection, const Vector3& position) {
+void Enemy::Initialize(Model* model, ViewProjection* viewProjection, const Vector3& position) {
 
 	// NULLポインタチェック
 	assert(model);

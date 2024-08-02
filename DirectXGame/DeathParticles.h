@@ -8,15 +8,13 @@
 #include <array>
 #include <numbers>
 
-    class DeathParticles {
+class DeathParticles {
 public:
 	void Initialize(Model* model, ViewProjection* viewProjection, const Vector3& position);
 
 	void Update();
 
 	void Draw();
-
-	bool IsFinished() const { return isFinished_; }
 
 private:
 	static inline const uint32_t kNumParticles = 8;
@@ -27,9 +25,8 @@ private:
 	Model* model_ = nullptr;
 	std::array<WorldTransform, kNumParticles> worldTransforms_;
 	ViewProjection* viewProjection_ = nullptr;
-	bool isFinished_ = false;
+	bool isFinished_ = 0.0f;
 	float counter_ = 0.0f;
-	//	bool finished_ = false;
 	//	ObjectColor objectColor_;
 	Vector4 color_;
 };
