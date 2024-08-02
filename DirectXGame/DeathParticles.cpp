@@ -6,21 +6,20 @@
 
 void DeathParticles::Initialize(Model* model, ViewProjection* viewProjection, const Vector3& position) {
 
-	//NULLポインタチェック
+	// NULLポインタチェック
 	assert(model);
 
 	model_ = model;
 
-	//ワールド変数の初期化
+	// ワールド変数の初期化
 	for (auto& WorldTransform : worldTransforms_) {
 		WorldTransform.Initialize();
 		WorldTransform.translation_ = position;
 	}
 
 	viewProjection_ = viewProjection;
-	//objectColor_.Initialize();
-	//color_ = {1,1,1,1};
-
+	// objectColor_.Initialize();
+	// color_ = {1,1,1,1};
 }
 
 void DeathParticles::Update() {
@@ -37,11 +36,11 @@ void DeathParticles::Update() {
 	}
 
 	for (uint32_t i = 0; i < worldTransforms_.size(); ++i) {
-		Vector3 velocity = {kSpeed,0,0};
-		//速度ベクトルを回転させる
+		Vector3 velocity = {kSpeed, 0, 0};
+		// 速度ベクトルを回転させる
 		float angle = kAngleUnit * i;
 		Matrix4x4 matrixRotation = MakeRotateZMatrix(angle);
-		velocity = Transform(velocity,matrixRotation);
+		velocity = Transform(velocity, matrixRotation);
 
 		worldTransforms_[i].translation_ += velocity;
 	}
@@ -50,10 +49,9 @@ void DeathParticles::Update() {
 		worldTransform.UpdateMatrix();
 	}
 
-	color_.w = std::max(0.0f,1.0f - counter_ / kDuration);
-//	objectColor_.SetColor(color_);
-//	objectColor_.TransferMatrix();
-
+	color_.w = std::max(0.0f, 1.0f - counter_ / kDuration);
+	//	objectColor_.SetColor(color_);
+	//	objectColor_.TransferMatrix();
 }
 
 void DeathParticles::Draw() {
@@ -63,7 +61,6 @@ void DeathParticles::Draw() {
 	}
 
 	for (auto& worldTransform : worldTransforms_) {
-		model_->Draw(worldTransform,*viewProjection_);//,&objectColor_);
+		model_->Draw(worldTransform, *viewProjection_); //,&objectColor_);
 	}
-
 }
